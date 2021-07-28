@@ -1,0 +1,50 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::489994096722:role/eks-worker-nodes-role
+      username: system:node:{{EC2PrivateDNSName}}
+  mapUsers: |-
+    - userarn: arn:aws:iam::489994096722:user/wajahat
+      username: wajahat
+      groups:
+        - system:masters
+        
+    - userarn: arn:aws:iam::489994096722:user/daniyal.lodhi
+      username: daniyal.lodhi
+      groups:
+        - system:masters
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"mapRoles":"- groups:\n  - system:bootstrappers\n  - system:nodes\n  rolearn: arn:aws:iam::489994096722:role/eks-worker-nodes-role\n  username: system:node:{{EC2PrivateDNSName}}\n","mapUsers":"- userarn: arn:aws:iam::489994096722:user/wajahat\n  username: wajahat\n  groups:\n    - system:masters"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2021-07-08T18:33:33Z","managedFields":[{"apiVersion":"v1","fieldsType":"FieldsV1","fieldsV1":{"f:data":{".":{},"f:mapRoles":{}}},"manager":"vpcLambda","operation":"Update","time":"2021-07-08T18:33:33Z"},{"apiVersion":"v1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:kubectl.kubernetes.io/last-applied-configuration":{}}}},"manager":"kubectl-client-side-apply","operation":"Update","time":"2021-07-08T19:55:23Z"}],"name":"aws-auth","namespace":"kube-system","resourceVersion":"10279","uid":"f70f5d18-adda-48f3-9406-20522da142a3"}}
+  creationTimestamp: "2021-07-08T18:33:33Z"
+  managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:data:
+          .: {}
+          f:mapRoles: {}
+      manager: vpcLambda
+      operation: Update
+      time: "2021-07-08T18:33:33Z"
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:data:
+          f:mapUsers: {}
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+      manager: kubectl-client-side-apply
+      operation: Update
+      time: "2021-07-08T20:02:17Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "10909"
+  uid: f70f5d18-adda-48f3-9406-20522da142a3
